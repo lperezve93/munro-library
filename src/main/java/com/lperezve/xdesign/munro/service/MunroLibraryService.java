@@ -30,22 +30,16 @@ public class MunroLibraryService {
     private MunroLibraryRepository munroLibraryRepository;
 
     @EventListener(ApplicationReadyEvent.class)
-    public void saveData() {
+    public void saveData() throws URISyntaxException, FileNotFoundException {
         List<Munro> munroList = new ArrayList<>();
 
-        try {
-            munroList = CsvReader.csvReader(CsvReader.getFilepath(FILENAME_CSV));
-            LOGGER.info("+++ Number of rows retrieved from munro file {} +++ ", munroList.size());
-        } catch (URISyntaxException e) {
-            LOGGER.error("+++ Error getting the URI file {} +++ \n Error message: {} ", FILENAME_CSV, e.getMessage());
-        } catch (FileNotFoundException e) {
-            LOGGER.error("+++ Error finding the file {} +++ \n Error message: {} ", FILENAME_CSV, e.getMessage());
-        }
+        munroList = CsvReader.csvReader(CsvReader.getFilepath(FILENAME_CSV));
+        LOGGER.info("+++ Number of rows retrieved from munro file {} +++ ", munroList.size());
 
         munroLibraryRepository.saveData(munroList);
     }
 
-    public List<MunroResponseDTO> findMunros(String category, String sort, Integer limit, Float minHeight, Float maxHeight) {
+    public List<MunroResponseDTO> findMunros(String category, String sort, String limit, String minHeight, String maxHeight) {
         LOGGER.info("+++ Filtering data by: ");
 
         List<Munro> munroList = munroLibraryRepository.findMunros();
@@ -75,34 +69,33 @@ public class MunroLibraryService {
     }
 
 
-    private Stream<Munro> addingLimit(Stream<Munro> munroStream, Integer limit) {
+    private Stream<Munro> addingLimit(Stream<Munro> munroStream, String limit) {
         LOGGER.info("limit: {}", limit);
 
         if (limit != null) {
-            munroStream = munroStream.limit(limit);
+            munroStream = munroStream.limit(Integer.parseInt(limit));
         }
         return munroStream;
     }
 
-    private Stream<Munro> addingMinHeight(Stream<Munro> munroStream, Float minHeight) {
+    private Stream<Munro> addingMinHeight(Stream<Munro> munroStream, String minHeight) {
         LOGGER.info("minHeight: {}", minHeight);
 
         if (minHeight != null) {
-            munroStream = munroStream.filter(munro -> munro.getHeightM() >= minHeight);
+            munroStream = munroStream.filter(munro -> munro.getHeightM() >= Float.parseFloat(minHeight));
         }
         return munroStream;
     }
 
-    private Stream<Munro> addingMaxHeight(Stream<Munro> munroStream, Float maxHeight) {
+    private Stream<Munro> addingMaxHeight(Stream<Munro> munroStream, String maxHeight) {
         LOGGER.info("maxHeight:{}", maxHeight);
 
         if (maxHeight != null) {
-            munroStream = munroStream.filter(munro -> munro.getHeightM() <= maxHeight);
+            munroStream = munroStream.filter(munro -> munro.getHeightM() <= Float.parseFloat(maxHeight));
         }
         return munroStream;
     }
 
-    //namedesc - name
     private Stream<Munro> sortingBy(Stream<Munro> munroStream, String sort) {
         LOGGER.info("sortingBy: {}", sort);
         if (sort != null) {
