@@ -26,7 +26,7 @@ Once you have configured the JDK and Gradle, run the following commands to:
 
 
 ### Postman
-In order to test the api, I have provided a Postman collection (**), which contains the existing endpoints and examples of calls for the different scenarios.
+In order to test the api, I have provided a Postman collection (*Munro-Library.postman_collection*), which contains the existing endpoints and examples of calls for the different scenarios.
 
 ### Swagger
 The project is also delivered with the Swagger tool.

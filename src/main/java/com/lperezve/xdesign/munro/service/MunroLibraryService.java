@@ -15,7 +15,6 @@ import org.springframework.stereotype.Service;
 
 import java.io.FileNotFoundException;
 import java.net.URISyntaxException;
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -33,9 +32,8 @@ public class MunroLibraryService {
 
     @EventListener(ApplicationReadyEvent.class)
     public GlobalResponseDTO saveData() throws URISyntaxException, FileNotFoundException {
-        List<Munro> munroList = new ArrayList<>();
 
-        munroList = CsvReader.csvReader(CsvReader.getFilepath(FILENAME_CSV));
+        List<Munro> munroList = CsvReader.csvReader(CsvReader.getFilepath(FILENAME_CSV));
         LOGGER.info("+++ Number of rows retrieved from munro file {} +++ ", munroList.size());
 
         munroLibraryRepository.saveData(munroList);
@@ -103,22 +101,13 @@ public class MunroLibraryService {
     private Stream<Munro> sortingBy(Stream<Munro> munroStream, String sort) {
         LOGGER.info("sortingBy: {}", sort);
         if (sort != null) {
-            if (!isMultipleSorting(sort)) {
-                if (sort.contains(DESC)) {
-                    munroStream = descSorting(munroStream, sort);
-                } else {
-                    munroStream = ascSorting(munroStream, sort);
-                }
+            if (sort.contains(DESC)) {
+                munroStream = descSorting(munroStream, sort);
+            } else {
+                munroStream = ascSorting(munroStream, sort);
             }
-//            else {
-//                munroStream = multipleSorting(munroStream, sort);
-//            }
         }
         return munroStream;
-    }
-
-    private boolean isMultipleSorting(String sort) {
-        return sort.contains(PLUS) ? Boolean.TRUE : Boolean.FALSE;
     }
 
     private Stream<Munro> descSorting(Stream<Munro> munroStream, String sort) {
@@ -137,10 +126,4 @@ public class MunroLibraryService {
         }
     }
 
-//    private Stream<Munro> multipleSorting(Stream<Munro> munroStream, String sort){
-//        String[] multipleSort = sort.split(PLUS);
-//        if (multipleSort[0].contains(ASC)) return ascSorting(munroStream, multipleSort[0]);
-//        else return descSorting(munroStream, multipleSort[0]);
-//
-//    }
 }
