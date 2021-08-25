@@ -19,6 +19,10 @@ repositories {
 	mavenCentral()
 }
 
+ext {
+	swagger_version = '3.0.0'
+}
+
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
@@ -27,6 +31,9 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 	providedRuntime 'org.springframework.boot:spring-boot-starter-tomcat'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation group: 'com.opencsv', name: 'opencsv', version: '5.4'
+	implementation "io.springfox:springfox-boot-starter:${swagger_version}"
+	implementation "io.springfox:springfox-swagger-ui:${swagger_version}"
 }
 
 test {
