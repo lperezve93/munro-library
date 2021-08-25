@@ -2,6 +2,7 @@ package com.lperezve.xdesign.munro.controller;
 
 import com.lperezve.xdesign.munro.MunroLibraryApplication;
 import com.lperezve.xdesign.munro.dto.MunroResponseDTO;
+import com.lperezve.xdesign.munro.exception.MunroCategoryException;
 import com.lperezve.xdesign.munro.exception.MunroLimitException;
 import com.lperezve.xdesign.munro.service.MunroLibraryService;
 import io.swagger.annotations.Api;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.management.AttributeNotFoundException;
 import java.util.List;
 import java.util.regex.Pattern;
 
@@ -41,7 +41,7 @@ public class MunroLibraryController {
             @RequestParam(value = "sort", required = false) String sort,
             @RequestParam(value = "limit", required = false) String limit,
             @RequestParam(value = "minHeight", required = false) String minHeight,
-            @RequestParam(value = "maxHeight", required = false) String maxHeight) throws AttributeNotFoundException, MunroLimitException {
+            @RequestParam(value = "maxHeight", required = false) String maxHeight) throws MunroCategoryException, MunroLimitException {
 
         validateFilters(category, sort, limit, minHeight, maxHeight);
 
@@ -49,14 +49,14 @@ public class MunroLibraryController {
         return new ResponseEntity<>(munroResponseDTOList, HttpStatus.OK);
     }
 
-    private void validateFilters(String category, String sort, String limit, String minHeight, String maxHeight) throws AttributeNotFoundException, MunroLimitException {
+    private void validateFilters(String category, String sort, String limit, String minHeight, String maxHeight) throws MunroCategoryException, MunroLimitException {
         validateCategory(category);
         validateLimit(limit);
     }
 
-    private void validateCategory(String category) throws AttributeNotFoundException {
+    private void validateCategory(String category) throws MunroCategoryException {
         if (category != null && (!category.equals(MUN) && !category.equals(TOP)))
-            throw new AttributeNotFoundException();
+            throw new MunroCategoryException();
     }
 
     private void validateLimit(String limit) throws MunroLimitException {
