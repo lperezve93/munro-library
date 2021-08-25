@@ -2,7 +2,7 @@ package com.lperezve.xdesign.munro.constants;
 
 public interface Messages {
 
-    //
+    // Success
     String HTTP_200_DATA_LOADED = "SUCCESS: data loaded";
 
     // Error
