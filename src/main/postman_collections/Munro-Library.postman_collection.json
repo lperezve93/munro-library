@@ -1,0 +1,319 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Munro-Library",
+		"_postman_id": "24ff5feb-b63c-c588-6e70-811fce9a00fe",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Get All Munros",
+			"request": {
+				"url": "http://localhost:8080/munro-library/filtering",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros by category = MUN",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?category=MUN",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "MUN",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros by category = TOP",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?category=TOP",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "category",
+							"value": "TOP",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros with limit",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?limit=5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "5",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros sorting by name desc",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?sort=name,desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "name,desc",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros sorting by name asc",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?sort=name",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "name",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros sorting by height desc",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?sort=height,desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "height,desc",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros sorting by height asc",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?sort=height",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "sort",
+							"value": "height",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros sorting between min and max height",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?minHeight=990&maxHeight=1000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "minHeight",
+							"value": "990",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "maxHeight",
+							"value": "1000",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get munros sorting between min and max height and sort by height desc",
+			"request": {
+				"url": {
+					"raw": "http://localhost:8080/munro-library/filtering?minHeight=995&maxHeight=1000&sort=height,desc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"munro-library",
+						"filtering"
+					],
+					"query": [
+						{
+							"key": "minHeight",
+							"value": "995",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "maxHeight",
+							"value": "1000",
+							"equals": true,
+							"description": ""
+						},
+						{
+							"key": "sort",
+							"value": "height,desc",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
