@@ -1,6 +1,8 @@
 package com.lperezve.xdesign.munro.service;
 
+import com.lperezve.xdesign.munro.constants.Messages;
 import com.lperezve.xdesign.munro.csvreader.CsvReader;
+import com.lperezve.xdesign.munro.dto.GlobalResponseDTO;
 import com.lperezve.xdesign.munro.dto.MunroResponseDTO;
 import com.lperezve.xdesign.munro.model.Munro;
 import com.lperezve.xdesign.munro.repository.MunroLibraryRepository;
@@ -30,13 +32,15 @@ public class MunroLibraryService {
     private MunroLibraryRepository munroLibraryRepository;
 
     @EventListener(ApplicationReadyEvent.class)
-    public void saveData() throws URISyntaxException, FileNotFoundException {
+    public GlobalResponseDTO saveData() throws URISyntaxException, FileNotFoundException {
         List<Munro> munroList = new ArrayList<>();
 
         munroList = CsvReader.csvReader(CsvReader.getFilepath(FILENAME_CSV));
         LOGGER.info("+++ Number of rows retrieved from munro file {} +++ ", munroList.size());
 
         munroLibraryRepository.saveData(munroList);
+
+        return GlobalResponseDTO.builder().description(Messages.HTTP_200_DATA_LOADED).build();
     }
 
     public List<MunroResponseDTO> findMunros(String category, String sort, String limit, String minHeight, String maxHeight) {

@@ -5,6 +5,6 @@ import lombok.Data;
 
 @Data
 @Builder
-public class BadResponseDTO {
+public class GlobalResponseDTO {
     private String description;
 }

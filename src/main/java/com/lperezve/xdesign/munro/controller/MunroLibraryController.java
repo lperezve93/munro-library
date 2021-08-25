@@ -61,8 +61,8 @@ public class MunroLibraryController {
 
     private void validateLimit(String limit) throws MunroLimitException {
         Pattern pattern = Pattern.compile("[0-9]+");
-        if (limit != null && !pattern.matcher(limit).matches()) ;
-        throw new MunroLimitException();
+        if (limit != null && !pattern.matcher(limit).matches())
+            throw new MunroLimitException();
     }
 
 
